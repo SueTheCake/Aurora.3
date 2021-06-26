@@ -71,7 +71,7 @@ BREATH ANALYZER
 		if (((user.is_clumsy()) || (DUMB in user.mutations)) && prob(50))
 			user.visible_message("<b>[user]</b> runs the scanner over the floor.", "<span class='notice'>You run the scanner over the floor.</span>", "<span class='notice'>You hear metal repeatedly clunking against the floor.</span>")
 			to_chat(user, "<span class='notice'><b>Scan results for the floor:</b></span>")
-			to_chat(user, "Overall Status: Healthy</span>")
+			to_chat(user, "Overall Status: <span class='good'>Healthy</span>")
 			return
 
 		if(!usr.IsAdvancedToolUser())
@@ -248,7 +248,7 @@ BREATH ANALYZER
 			if(!found_bleed && (e.status & ORGAN_ARTERY_CUT))
 				dat += "<span class='scan_warning'>Arterial bleeding detected. Advanced scanner required for location.</span>"
 				found_bleed = TRUE
-			if(!found_tendon && (istype(e.tendon) && !e.tendon.intact))
+			if(!found_tendon && (e.tendon_status() & TENDON_CUT))
 				dat += "<span class='scan_warning'>Tendon or ligament damage detected. Advanced scanner required for location.</span>"
 				found_tendon = TRUE
 		if(found_disloc && found_bleed && found_tendon)
